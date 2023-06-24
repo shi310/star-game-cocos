@@ -1,7 +1,6 @@
 import { _decorator, Component, Label, Node } from 'cc'
 import { wsModule, Room, room, userInfo, common, wsReceive, utils } from '../../../Script';
 import renewSeat from './RenewSeat';
-import WsReceive from '../../../Script/Interface/WsReceive';
 
 const { ccclass, property } = _decorator
 
@@ -43,7 +42,7 @@ export class PSZManager extends Component {
             sex: userInfo.sex,
         }
 
-        wsModule.init(this.port, this.onmessage.bind(this), this.onopen.bind(this))
+        wsModule.init(this.port, this.onmessage.bind(this))
         this.getRoomInfo()
     }
 
@@ -53,16 +52,11 @@ export class PSZManager extends Component {
         if (_wsReceive.type === 'timer') {
             console.log(_wsReceive.data.time);
             this.renewTime(_wsReceive.data.time)
-        } else {
+        } else if (_wsReceive.type !== undefined) {
             console.log(_wsReceive);
             this.room = room.parse(_wsReceive.data)
             this.ready(this.room)
         }
-
-    }
-
-    private onopen(event: Event) {
-        console.log(event);
 
     }
 

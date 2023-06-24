@@ -16,6 +16,8 @@ export class CreatRoomManager extends Component {
     }
 
     private onCreateRoom() {
+        common.showLoading()
+
         let round = this.round
         let isAllDrop = this.isAllDrop
 
@@ -31,7 +33,6 @@ export class CreatRoomManager extends Component {
     }
 
     private creatRoomCallback(r: Receive) {
-
         setTimeout(() => {
             common.hideLoading()
             if (r.code == 200) {

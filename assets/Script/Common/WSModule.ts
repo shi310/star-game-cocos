@@ -44,7 +44,9 @@ export default class WSModule {
         this.ws.onopen = (event: Event) => {
             common.hideWsLoading()
             this.heartbeat()
-            onopenCallback(event)
+            if (onopenCallback !== undefined) {
+                onopenCallback(event)
+            }
         }
     }
 

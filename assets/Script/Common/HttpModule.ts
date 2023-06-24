@@ -7,7 +7,8 @@ export default class HttpModule {
 
     private static _instance: HttpModule = null
     constructor() {
-        this.baseUrl = "http://localhost:8080"
+        // this.baseUrl = "http://localhost:8080"
+        this.baseUrl = "http://124.220.92.185:8080"
         this.timeout = 5000
         this.xhr = new XMLHttpRequest()
     }
